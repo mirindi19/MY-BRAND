@@ -301,7 +301,7 @@ else if(msg.value==""){
         liked: [],
         commentcount:0,
         comments:[],
-    }; // You have to add likecount
+    }; 
     Blogarr.push(blog)
     // var json= JSON.stringify(arr);
     
@@ -317,28 +317,21 @@ else if(msg.value==""){
 
 
 //////////////////////////////////Comment//////////////////////
-function comment(){
-let btn = document.getElementById("submit-btn");
-  btn.addEventListener("click", (e) => {
-    e.preventDefault();
+function comment(x){
+  let blogs= JSON.parse(localStorage.getItem("blogs")); 
+  
     var message = document.getElementById('comment-message').value;
     let user = JSON.parse(localStorage.getItem("loginuser"));
     console.log("login name",user.fname)
-   let comments = JSON.parse(localStorage.getItem("comments") || "[]");
     var commentData = {
         message: message,
-        username: user ? user.fname : "unknown user"
+        username: user.name,
         // conditions: conditions.value,
     };
-    comments.unshift(commentData)
-    var data = JSON.stringify(comments);
-    localStorage.setItem("comments",data);
-    message = ""
-    alert("message sent successfull");
-    location.reload();
-  })
-
-}
+      blogs[x].comments.push(commentData)
+      localStorage.setItem("blogs",JSON.stringify(blogs))
+      location.reload();
+  }
 
 function Like(x) { 
 
@@ -407,6 +400,7 @@ function displayBlogAdim(){
         pic.src=picture;
         let message= document.createTextNode(user[i].message);
         let countlike =document.createTextNode(user[i].likecount);
+     
         var newRow = table.insertRow(-1);
         cell0 =newRow.insertCell(0).appendChild(title);
         cell0.innerHtml=user[i].title;
@@ -423,6 +417,7 @@ function displayBlogAdim(){
         cell2 =newRow.insertCell(4).appendChild(countlike);
         cell2.innerHtml=user[i].likecount;
 
+       
         cell3 =newRow.insertCell(5);
         cell3.innerHTML =`<button onClick='formUpdate(${i})'>update</button><button onClick='onDelete("${user[i].title}")'>Delete</button>`
 
@@ -475,7 +470,17 @@ blogs.forEach((blog, index) => {
                 <div class="value">
                 <p>${blog.likecount}</p>
                 </div>
-                </div>     
+                </div> 
+                ${blog.comments.map((element, index)=>` <p>${element.message} </p><p>${element.username} </p>`)}
+              
+              
+              
+             
+                <br>
+                <form onsubmit=" event.preventDefault(); comment(${index})">
+                <textarea placeholder="Enter the comment here..." id="comment-message"></textarea><br>
+                <button>Comment</button>
+            </form>    
       `
     blogContainer.innerHTML = data
         console.log("this blog",blog)
