@@ -49,9 +49,9 @@ app.use(cookieparser());
 app.use(bodyParser.json());
 app.use(cors({origin:"*"}))
 app.use(router);
-const port=process.env.PORT || 2000;
-app.listen(port, ()=>{
-    console.log("Server in connected on",`${port}`);
+const PORT=process.env.PORT || 2000;
+app.listen(PORT, ()=>{
+    console.log("Server in connected on",`${PORT}`);
 })
 
 module.exports=app;
