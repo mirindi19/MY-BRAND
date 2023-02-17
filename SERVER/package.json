@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
+    "start": "index.js",
     "tests": "nyc --reporter=html --reporter=text mocha --require @babel/register ./src/test/*.test.js --timeout 1000000 --exit"
   },
   "author": "mirindisaidi19@gmail.com",
