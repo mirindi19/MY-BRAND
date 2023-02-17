@@ -13,7 +13,7 @@ jobs:
           command: cd SERVER && npm install mocha c8 chai-http chai
       - run:
           name: Run Unit Tests
-          command: cd SERVER && npm tests
+          command: cd SERVER && npm test
 workflows:
   build_tests:
     jobs:
