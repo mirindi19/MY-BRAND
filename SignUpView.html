@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="Admin-style.css"/>
+    <title>PostAdmin</title>
+</head>
+<body>
+    <div class="wrapper">
+        <!--Top Menu & Menu button-->
+           <div class="sidebar">
+               <div class="profile">
+                   <img src="./pictures/Mirindi.jpg" alt="profile_picture"></img>
+                   <h3>Mirindi Saidi</h3>
+                   <p>Admin</p>
+            </div>
+            <ul>
+                <li>
+                    <a href="" class="active">
+                        <span class="item" >Sign up view</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="viewMessage.html">
+                        <span class="item" >Message</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <span class="item">Add Skill</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="AdminBlog.html">
+                        <span class="item">Blog</span>
+                    </a>
+                </li>           
+  </ul>
+          </div>
+           
+          <div class="section">
+            <div class="top_navbar">
+                <div class="hamburger">
+                   <a href="index.html" class="btnTopNavbar">Logout</a>
+                </div>
+            </div>
+             
+        </div>
+        <main>
+
+            <div class="wrapper-table">
+       <div class="Table-div-response">
+        <!-- <a href="AdminSkill.html" class="btnAction">Add SKill</a> -->
+            <table class="display-Table" id="storeList">
+                <tr> 
+                    <th>Fullname</th>
+                    <th>Age</th>
+                    <th>Email</th> 
+               </tr>
+                <tbody>
+                    
+                </tbody> 
+            </table>
+            </div>
+                </div>
+        </main>
+        <script src="main.js"></script>
+       <script>window.onload=display()</script> 
+</body>
+</html>

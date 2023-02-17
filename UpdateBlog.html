@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="Admin-style.css"/>
+    <title>PostAdmin</title>
+</head>
+<body>
+    <div class="wrapper">
+        <!--Top Menu & Menu button-->
+           <div class="sidebar">
+               <div class="profile">
+                   <img src="./pictures/Mirindi.jpg" alt="profile_picture"></img>
+                <h3>Mirindi Saidi</h3>
+                <p>Admin</p>
+            </div>
+            <ul>
+                <li>
+                    <a href="">
+                        <span class="item" >Sign up view</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="viewMessage.html">
+                        <span class="item" >Message</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="AdminAddSkill.html">
+                        <span class="item">Add Skill</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="AdminBlog.html"  class="active">
+                        <span class="item">Blog</span>
+                    </a>
+                </li>           
+  </ul>
+          </div>
+           
+          <div class="section">
+            <div class="top_navbar">
+                <div class="hamburger">
+                   <a href="index.html" class="btnTopNavbar">Logout</a>
+                </div>
+            </div>
+             
+        </div>
+        <main>
+            <div class="container-reg">
+                <header>Update Blog</header>
+        
+                <form onsubmit=" event.preventDefault(); addBlog(index)" id="frm">
+                    <div class="form first">
+                        <div class="details personal">
+                            <div class="fields">
+        
+                                 <div class="input-field">
+                                  <label for="proname">Title</label>
+                                  <input type="text" class="form-control" id="title" />
+                                </div>
+                                <div class="input-field">
+                                    <label for="proname">Date</label>
+                                    <input type="date" class="form-control" id="date" />
+                                  </div>
+                                  <div class="input-field">
+                                    <label for="proname">Picture</label>
+                                    <input type="file" class="form-control" id="picture" />
+                                    <img src="" id="pic"></img>
+                                  </div>
+                                  <div class="input-field">
+                                    <label for="proname">Message</label>
+                                    <textarea type="text" class="form-control" id="msg" value="message"></textarea>
+                                  </div>
+                                <button class="btnEnter">Enter</button>
+                            </div>
+        
+                    </div>
+                           </div>
+                </form>
+                 </div>
+                    
+        </main>
+       <script src="main.js"></script> 
+</body>
+<script>
+    let Blog = JSON.parse(window.localStorage.getItem("blogs"))
+    let index;
+    var parts = window.location.search.substr(1).split("&");
+    var m = {};
+    for (var i = 0; i < parts.length; i++) {
+        var temp = parts[i].split("=");
+        m[decodeURIComponent(temp[0])] = decodeURIComponent(temp[1]); 
+    }
+    index = m['id']
+    console.log(index)
+    function showEdit(){
+        let Blog = JSON.parse(window.localStorage.getItem("blogs"))
+        document.getElementById("title").value = Blog[index].title
+        document.getElementById("date").value = Blog[index].date
+        document.getElementById("msg").value = Blog[index].message
+        document.getElementById("pic").src = Blog[index].picture
+    }
+    window.onload = showEdit()
+</script>
+</html>
+<style>
+    form .fields .input-field
+{
+    display: flex;
+    width: calc(100% /1 - 15px);
+    flex-direction: column;
+    margin: 4px 0;
+}
+.input-field textarea{
+    outline: none;
+    font-size: 14px;
+    font-weight: 400;
+    color: black;
+    border-radius: 5px;
+    border: 1px solid #aaa;
+    padding: 0 15px;
+    height: 62px;
+    margin: 8px 0;
+}
+</style>
