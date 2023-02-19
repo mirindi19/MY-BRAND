@@ -1,0 +1,16 @@
+{
+    "version": 2,
+    "name": "my-node-project",
+    "env": {
+      "NODE_ENV": "production",
+      "PORT": "2000"
+    },
+    "buildCommand": "npm run build",
+    "startCommand": "npm dev",
+    "routes": [
+      {
+        "src": "/",
+        "dest": "src/index.js"
+      }
+    ]
+  }
