@@ -29,6 +29,7 @@ const options = {
       servers: [
         {
           url: "http://localhost:2000",
+          url: "https://my-brand-production-e42e.up.railway.app",
         },
       ],
     },
