@@ -13,7 +13,7 @@ describe('Testing Blog', () => {
   it('Testing Blog LoginASAdmin -> createBlog -> editBlog -> deleteBlog ......',(done) => {
       chai.request(app)
       .post(`/auth/login`)
-      .send({ email: `admin@gmail.com`, password: "12" })
+      .send({ email: `admin@gmail.com`, password: "Kylexy@98" })
       .set('content-type', 'application/json')
       .end((err, res) => {
         expect(res.statusCode).to.equal(200);
@@ -76,7 +76,7 @@ describe('Testing view Blog', () => {
   it('Testing Contact LoginASAdmin -> viewContact......',(done) => {
       chai.request(app)
       .post(`/auth/login`)
-      .send({ email: `admin@gmail.com`, password: "12" })
+      .send({ email: `admin@gmail.com`, password: "Kylexy@98" })
       .set('content-type', 'application/json')
       .end((err, res) => {
         expect(res.statusCode).to.equal(200);
