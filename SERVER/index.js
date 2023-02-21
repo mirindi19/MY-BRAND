@@ -49,6 +49,8 @@ app.use(express.json());
 app.use(cookieparser());
 app.use(bodyParser.json());
 app.use(cors({origin:"*"}))
+app.use(express.urlencoded());
+app.use(express.static('public'));
 app.use(router);
 const PORT=process.env.PORT || 2000;
 app.listen(PORT, ()=>{

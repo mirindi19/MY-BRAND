@@ -11,7 +11,7 @@
 
 <div class="container" id="container">
 	<div class="form-container sign-in-container">
-		<form name="validation" onsubmit="return signup()">
+		<form name="validation" method="post" id="validation">
 			<h1>create Account</h1>
 			<div class="error">
             <input type="text"  placeholder="Full name" id="fname" name="fname"/>
@@ -44,6 +44,41 @@
 	</div>
 </div>
 <script src="main.js"></script>
+<script>
+const thisForm = document.getElementById('validation');
+thisForm.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    const formData = new FormData(thisForm).entries()
+	const data=Object.fromEntries(formData);
+	var email=data.email
+ var pswd=data.pswd
+ var fname=data.fname
+ var age=data.age
+//  console.log("form data",email,pswd,fname,age);
+    const response = await fetch('http://localhost:2000/auth/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify({
+	Fullname:fname,
+	age:age,
+    email:email,
+    password:pswd,
+  }),
+    }).then(function(response){ 
+  return response.json()})
+  .then(function(data)
+  {
+	if(data.status===200){
+		alert(`${data.message}`)
+		redirect('loading.html')
+	}
+	else{
+		alert(`${data.error}`)
+	}
+	console.log(data)
+}).catch(error => console.error('Error:', error));
+});
+</script>
 </body>
 </html>
 <style>

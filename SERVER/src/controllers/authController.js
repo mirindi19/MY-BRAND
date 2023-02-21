@@ -16,7 +16,7 @@ class authController{
             if(req.user){
                 return res.status(409).json({
                     status:409,
-                    message:"Email already exist"
+                    error:"Email already exist"
                     
                 })
             }
