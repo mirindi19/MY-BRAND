@@ -108,7 +108,8 @@
 const router=require("express").Router();
 const verifyToken =require("../middlewares/verifyToken");
 const isAdmin=require("../middlewares/isAdmin");
+const Contactvalidation=require("../middlewares/contactValidation");
 const contactController =require("../controllers/ContactController");
-router.post("/",contactController.SendMessage);
+router.post("/",Contactvalidation,contactController.SendMessage);
 router.get("/",verifyToken,isAdmin,contactController.DisplayContact);
 module.exports=router;

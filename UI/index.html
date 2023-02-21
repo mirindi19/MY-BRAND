@@ -61,8 +61,15 @@ thisForm.addEventListener('submit', async function (e) {
   .then(function(data)
   {
 	if(data.status===200){
+        if(data.data.role==="user"){
 		alert(`${data.message}`)
-		redirect('loading.html')
+        window.location.href = './loading.html';
+        localStorage.setItem("loginuser",JSON.stringify(data.data.token))
+    }else if(data.data.role==="Admin"){
+        alert(`${data.message}`)
+        window.location.href = './adminBlog.html';
+        localStorage.setItem("loginuser",JSON.stringify(data.data.token))
+    }
 	}
 	else{
 		alert(`${data.error}`)

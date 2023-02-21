@@ -53,7 +53,7 @@ class authController{
             if(!findUser){
                 res.status(404).json({
                     status: 404,
-                    message:"Account don't exit"
+                    error:"Account don't exit"
                 })
             }
             else{
@@ -76,7 +76,7 @@ class authController{
                         const emailfromtoken =decodeToken.email
                        
                        return res.status(200).json({
-                            stastus: 200,
+                            status: 200,
                             message: "Login succefull",
                             data:{
                                 role,
@@ -87,13 +87,13 @@ class authController{
                     }else{
                         res.status(400).json({
                             stastus: 400,
-                            message:"Wrong Password"
+                            error:"Wrong Password"
                         })
                     }
                 }else{
                     res.status(400).json({
                         stastus: 400,
-                        message:"Wrong Email"
+                        error:"Wrong Email"
                     })
                 }
             }

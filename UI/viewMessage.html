@@ -43,7 +43,7 @@
           <div class="section">
             <div class="top_navbar">
                 <div class="hamburger">
-                   <a href="login.html" class="btnTopNavbar">Logout</a>
+                   <a href="index.html" class="btnTopNavbar">Logout</a>
                 </div>
             </div>
              
@@ -69,5 +69,19 @@
         </main>
         <script src="main.js"></script>
        <script>window.onload=displayContact()</script> 
+       <script>
+        fetch("http://localhost:2000/contat/").then((data)=>{
+            return data.json();
+        }).then((objectData)=>{
+            let tableData="";
+            objectData.map((values)=>{
+                tableData+=`<tr>
+                    <td>${values.data.name}</td>
+                    </tr>`;
+                    console.log("let check",values.data.name);
+            });
+            document.getElementById("storeList").innerHTML=tableData;
+        })
+       </script>
 </body>
 </html>

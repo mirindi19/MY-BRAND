@@ -113,7 +113,8 @@
 
 <div class="form-one">
     <div class="one">
-        <form name="validation" onsubmit="return contact()">
+        <!-- onsubmit="return contact()" -->
+        <form name="validation" method="post" id="validation">
             <div class="form first">
                 <div class="details personal">
                     <div class="fields">
@@ -126,7 +127,7 @@
                             <span class="error">email</span>
                           </div>
                           <div class="input-field">
-                            <input type="text" class="form-control" placeholder="Enter Address" id="address" name="pswd"/>
+                            <input type="text" class="form-control" placeholder="Enter Address" id="address" name="address"/>
                             <span class="error">address</span>
                           </div>
                         </div>
@@ -140,7 +141,7 @@
         <div class="details personal">
         <div class="fields">
     <div class="input-field">
-        <textarea type="text" class="form-control"placeholder="Message" rows="4" cols="50" id="message" ></textarea>
+        <textarea type="text" class="form-control"placeholder="Message" rows="4" cols="50" id="message" name="message"></textarea>
         <span class="error">message</span>
       </div>
       <button class="btnEnter">Send Message</button>
@@ -218,6 +219,40 @@
         modal.style.display = "none";
       }
     }
+</script>
+<script>
+    const thisForm = document.getElementById('validation');
+thisForm.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    const formData = new FormData(thisForm).entries()
+	const data=Object.fromEntries(formData);
+	     var email=data.email
+         var name=data.name
+         var address=data.address
+         var message=data.message
+    // console.log("Contact me",address,message);
+    const response = await fetch('http://localhost:2000/contat/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify({
+	email:email,
+	name:name,
+    address:address,
+    message:message,
+  }),
+    }).then(function(response){ 
+  return response.json()})
+  .then(function(data)
+  {
+	if(data.status===201){
+		alert(`${data.message}`)
+	}
+	else{
+		alert(`${data.error}`)
+	}
+	console.log(data)
+}).catch(error => console.error('Error:', error));
+});
 </script>
 </body>
 </html>
