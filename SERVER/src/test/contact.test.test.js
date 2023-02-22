@@ -100,7 +100,7 @@ describe('/signup', () => {
       .send({
         Fullname:`Saidi${number}`,
         age:'23',
-        email:`Saidi${number}@mail.com`,
+        email:`Saidi${number}g@mail.com`,
         password:'Mai1@23k'
       })
       .set('content-type', 'application/json')
@@ -113,7 +113,7 @@ describe('/signup', () => {
 
         chai.request(app)
         .post(`/auth/login`)
-        .send({ email: `Saidi${number}@mail.com`, password: "Mai1@23k" })
+        .send({ email: `Saidi${number}g@mail.com`, password: "Mai1@23k" })
         .set('content-type', 'application/json')
         .end((err, res) => {
           expect(res.statusCode).to.equal(200);
