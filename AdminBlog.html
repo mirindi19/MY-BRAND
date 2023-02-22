@@ -51,19 +51,16 @@
             <div class="wrapper-table">
        <div class="Table-div-response">
         <a href="AdminAddBlog.html" class="btnAction">Add Blog</a>
-            <table class="display-Table" id="storeList">
+            <table class="display-Table">
                 <tr> 
                     <th>Title</th>
                     <th>Date</th>
-                    <th>Picture</th>
                     <th>content</th>
-                    <th>like</th>
+                    <th>Picture</th>
                     <th>Action</th>
-
-               
                 </tr>
                 
-                <tbody>
+                <tbody id="storeList">
                     
                 </tbody> 
             </table>
@@ -72,5 +69,66 @@
         </main>
         <script src="main.js"></script>
         <script>window.onload=displayBlogAdim()</script> 
+        <script>
+              const token=localStorage.getItem("loginuser")
+        let headers
+        if (token) {
+      headers = {
+        "Content-Type": "application/json",
+        token: `${token}`,
+      };
+    } else {
+      headers = {
+        "Content-Type": "application/json",
+      };
+    }
+        // console.log("token",token);
+        fetch("https://my-brand-production-e42e.up.railway.app/blog",{headers:headers}).then((data)=>{
+            return data.json();
+        }).then((objectData)=>{
+            // console.log(objectData);
+            let tableData="";
+            objectData.data.map((values)=>{
+                tableData+= ` <tr key=${values._id}>
+                    <td>${values.title}</td>
+                    <td>${values.date}</td>
+                    <td>${values.content}</td>
+                       <td><img src="${values.image}"/></td>
+                       <td><button onclick="logout()">Delete</button></td>
+                    </tr>`;
+            });
+            document.getElementById("storeList").innerHTML=tableData;
+        })
+        </script>
+
+        <script>
+            function logout(){
+                // const user = JSON.parse(localStorage.getItem("loginuser"))
+//  var myHeaders = new Headers();
+// myHeaders.append("token",`${user.token}`);
+const token=localStorage.getItem("loginuser")
+        let headers
+        if (token) {
+      headers = {
+        "Content-Type": "application/json",
+        token: `${token}`,
+      };
+    } else {
+      headers = {
+        "Content-Type": "application/json",
+      };
+    }
+var requestOptions = {
+  method: 'DELETE',
+  headers: headers,
+  redirect: 'follow'
+};
+
+fetch("https://my-brand-production-e42e.up.railway.app/blog/63f5ea35d80ab65eb83d83cb", requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
+            }
+        </script>
 </body>
 </html>
