@@ -51,15 +51,15 @@
         <main>
             <div class="container-reg">
                 <header>Enter Blog</header>
-        
-                <form name="validation" onsubmit="return addBlogAdmin()">
+                <!-- onsubmit="return addBlogAdmin()" -->
+                <form name="validation" id="validation" method="post">
                     <div class="form first">
                         <div class="details personal">
                             <div class="fields">
         
                                  <div class="input-field">
                                   <label for="proname">Title</label>
-                                  <input type="text" class="form-control" id="title" name="titl"/>
+                                  <input type="text" class="form-control" id="title" name="title"/>
                                   <span class="error">Pleace enter title</span>
                                 </div>
                                 <div class="input-field">
@@ -69,12 +69,12 @@
                                   </div>
                                   <div class="input-field">
                                     <label for="proname">Picture</label>
-                                    <input type="file" class="form-control" id="picture" name="pictur"/>
+                                    <input type="file" class="form-control" id="image" name="image"/>
                                     <span class="error">Pleace insert Picture</span>
                                   </div>
                                   <div class="input-field">
                                     <label for="proname">Message</label>
-                                    <textarea type="text" class="form-control" id="message" name="messag"></textarea>
+                                    <textarea type="text" class="form-control" id="content"name="content"></textarea>
                                     <span class="error">Pleace enter message</span>
                                   </div>
                                 <button class="btnEnter">Enter</button>
@@ -87,6 +87,51 @@
                     
         </main>
        <script src="main.js"></script> 
+       <script>
+            const token=localStorage.getItem("loginuser")
+        let headers
+        if (token) {
+      headers = {
+        "Content-Type": "application/json",
+        token: `${token}`,
+      };
+    } else {
+      headers = {
+        "Content-Type": "application/json",
+      };
+    }
+        const thisForm = document.getElementById('validation');
+thisForm.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    const formData = new FormData(thisForm).entries()
+	const data=Object.fromEntries(formData);
+	var title =data.title
+    var image=data.image
+   var content=data.content
+ console.log("form data",title,image,content);
+    const response = await fetch('http://localhost:2000/blog/',{headers:headers}, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify({
+	title:title,
+	image:image,
+    content:content,
+  }),
+    }).then(function(response){ 
+  return response.json()})
+  .then(function(data)
+  {
+	if(data.status===201){
+		alert(`${data.message}`)
+		window.location.href = './AdminBlog.html';
+	}
+	else{
+		alert(`${data.error}`)
+	}
+	console.log(data)
+}).catch(error => console.error('Error:', error));
+});
+       </script>
 </body>
 </html>
 <style>

@@ -53,13 +53,13 @@
             <div class="wrapper-table">
        <div class="Table-div-response">
         <!-- <a href="AdminSkill.html" class="btnAction">Add SKill</a> -->
-            <table class="display-Table" id="storeList">
+            <table class="display-Table">
                 <tr> 
                     <th>Fullname</th>
                     <th>Age</th>
                     <th>Email</th> 
                </tr>
-                <tbody>
+                <tbody id="storeList">
                     
                 </tbody> 
             </table>
@@ -68,5 +68,34 @@
         </main>
         <script src="main.js"></script>
        <script>window.onload=display()</script> 
+       <script>
+        const token=localStorage.getItem("loginuser")
+        let headers
+        if (token) {
+      headers = {
+        "Content-Type": "application/json",
+        token: `${token}`,
+      };
+    } else {
+      headers = {
+        "Content-Type": "application/json",
+      };
+    }
+        // console.log("token",token);
+        fetch("http://localhost:2000/auth/",{headers:headers}).then((data)=>{
+            return data.json();
+        }).then((objectData)=>{
+            // console.log(objectData);
+            let tableData="";
+            objectData.data.map((values)=>{
+                tableData+= ` <tr key=${values._id}>
+                    <td>${values.Fullname}</td>
+                       <td>${values.age}</td>
+                       <td>${values.email}</td>
+                    </tr>`;
+            });
+            document.getElementById("storeList").innerHTML=tableData;
+        })
+       </script>
 </body>
 </html>
