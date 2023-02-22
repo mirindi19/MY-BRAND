@@ -86,7 +86,7 @@
  * /auth:
  *   get:
  *     summary: Get all signup 
- *     tags: [Contacts]
+ *     tags: [User]
  *     parameters:
  *       - name: token
  *         in: header
