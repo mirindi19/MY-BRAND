@@ -43,7 +43,7 @@
           <div class="section">
             <div class="top_navbar">
                 <div class="hamburger">
-                   <a href="index.html" class="btnTopNavbar">Logout</a>
+                   <a href="index.html" class="btnTopNavbar" onclick="logout()">Logout</a>
                 </div>
             </div>
              
@@ -51,8 +51,9 @@
         <main>
             <div class="container-reg">
                 <header>Enter Blog</header>
+                <!-- method="post" -->
                 <!-- onsubmit="return addBlogAdmin()" -->
-                <form name="validation" id="validation" method="post">
+                <form name="validation" onsubmit="return addBlogAdmin()">
                     <div class="form first">
                         <div class="details personal">
                             <div class="fields">
@@ -74,7 +75,7 @@
                                   </div>
                                   <div class="input-field">
                                     <label for="proname">Message</label>
-                                    <textarea type="text" class="form-control" id="content"name="content"></textarea>
+                                    <textarea type="text" class="form-control" id="content" name="content"></textarea>
                                     <span class="error">Pleace enter message</span>
                                   </div>
                                 <button class="btnEnter">Enter</button>
@@ -88,50 +89,40 @@
         </main>
        <script src="main.js"></script> 
        <script>
-            const token=localStorage.getItem("loginuser")
-        let headers
-        if (token) {
-      headers = {
-        "Content-Type": "application/json",
-        token: `${token}`,
-      };
-    } else {
-      headers = {
-        "Content-Type": "application/json",
-      };
+        const addBlogAdmin = () => {
+    const user = JSON.parse(localStorage.getItem("loginuser"))
+    var title = document.getElementById('title').value;
+    var content = document.getElementById('content').value;
+    var image = document.getElementById('image');
+    if (!title || !content || !image) {
+        return false;
     }
-        const thisForm = document.getElementById('validation');
-thisForm.addEventListener('submit', async function (e) {
-    e.preventDefault();
-    const formData = new FormData(thisForm).entries()
-	const data=Object.fromEntries(formData);
-	var title =data.title
-    var image=data.image
-   var content=data.content
- console.log("form data",title,image,content);
-    const response = await fetch('http://localhost:2000/blog/',{headers:headers}, {
+    var myHeaders = new Headers();
+    myHeaders.append("token", `${user.token}`);
+    var formdata = new FormData();
+    formdata.append("title", title);
+    formdata.append("content", content);
+    formdata.append("image", image.files[0]);
+    var requestOptions = {
+        mode: 'no-cors',
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-		body: JSON.stringify({
-	title:title,
-	image:image,
-    content:content,
-  }),
-    }).then(function(response){ 
-  return response.json()})
-  .then(function(data)
-  {
-	if(data.status===201){
-		alert(`${data.message}`)
-		window.location.href = './AdminBlog.html';
-	}
-	else{
-		alert(`${data.error}`)
-	}
-	console.log(data)
-}).catch(error => console.error('Error:', error));
-});
+        headers: myHeaders,
+        body: formdata,
+        redirect: 'follow'
+    };
+    fetch("http://localhost:2000/blog/", requestOptions)
+        .then(response => response.json())
+        .then(result => {
+            console.log(result)
+            document.getElementById('title').value = '',
+                document.getElementById('content').value = '',
+                document.getElementById('image').value = ''
+        })
+        .catch(error => console.log('error', error));
+        return false
+}
        </script>
+
 </body>
 </html>
 <style>

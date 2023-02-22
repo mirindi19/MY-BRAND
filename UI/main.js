@@ -236,84 +236,84 @@ function displayContact(){
 }
 
 
-function addBlogAdmin(){
-    let Blogarr =JSON.parse(localStorage.getItem("blogs") || "[]") 
-    var title= document.getElementById('title').value;
-    // var date= document.getElementById('date').value;
-    let dateToday=document.getElementById("date");
+// function addBlogAdmin(){
+//     let Blogarr =JSON.parse(localStorage.getItem("blogs") || "[]") 
+//     var title= document.getElementById('title').value;
+//     // var date= document.getElementById('date').value;
+//     let dateToday=document.getElementById("date");
 
-    let today=new Date();
-    let day=`${today.getDate() < 10 ? "0" : ""} ${today.getDate()}`;
-    let month=`${(today.getMonth() + 1) < 10 ? "0" : "" }${today.getMonth() + 1}`;
-    let year=today.getFullYear();
-    dateToday=`${day}/${month}/${year}`;
+//     let today=new Date();
+//     let day=`${today.getDate() < 10 ? "0" : ""} ${today.getDate()}`;
+//     let month=`${(today.getMonth() + 1) < 10 ? "0" : "" }${today.getMonth() + 1}`;
+//     let year=today.getFullYear();
+//     dateToday=`${day}/${month}/${year}`;
 
-    var pic = document.getElementById('picture');   
-    var pictures = pic.files[0].name;
-    var messages= document.getElementById('message').value;
+//     var pic = document.getElementById('picture');   
+//     var pictures = pic.files[0].name;
+//     var messages= document.getElementById('message').value;
 
 
 
-    var titl = document.validation.titl;
-    // var dat = document.validation.dat;
-    var p = document.validation.pictur;
-    var msg= document.validation.messag;
+//     var titl = document.validation.titl;
+//     // var dat = document.validation.dat;
+//     var p = document.validation.pictur;
+//     var msg= document.validation.messag;
 
-    if(titl.value===""){
-        titl.nextElementSibling.style.display="block";
-         titl.style.border="1px solid #ff00ff";
-         return false;   
+//     if(titl.value===""){
+//         titl.nextElementSibling.style.display="block";
+//          titl.style.border="1px solid #ff00ff";
+//          return false;   
          
  
- }
-//  else if(dat.value==""){
-//     dat.nextElementSibling.style.display="block";
-//     dat.style.border="1px solid #ff00ff";
-//     return false; 
-// }    
-else if(p.files[0].name==""){
-p.nextElementSibling.style.display="block";
-p.style.border="1px solid #ff00ff";
-return false; 
-} 
+//  }
+// //  else if(dat.value==""){
+// //     dat.nextElementSibling.style.display="block";
+// //     dat.style.border="1px solid #ff00ff";
+// //     return false; 
+// // }    
+// else if(p.files[0].name==""){
+// p.nextElementSibling.style.display="block";
+// p.style.border="1px solid #ff00ff";
+// return false; 
+// } 
 
-else if(msg.value==""){
-        msg.nextElementSibling.style.display="block";
-        msg.style.border="1px solid #ff00ff";
-             return false; 
-     }
-     else{
+// else if(msg.value==""){
+//         msg.nextElementSibling.style.display="block";
+//         msg.style.border="1px solid #ff00ff";
+//              return false; 
+//      }
+//      else{
 
-        titl.nextElementSibling.style.display="none";
-        titl.style.border="1px solid trasparent";
-        // dat.nextElementSibling.style.display="none";
-        // dat.style.border="1px solid trasparent";
-        p.nextElementSibling.style.display="none";
-        p.style.border="1px solid trasparent";
-        msg.nextElementSibling.style.display="none";
-        msg.style.border="1px solid trasparent";
-    var blog={
-        title:title,
-        date:dateToday,
-        picture:pictures,
-        message:messages,
-        likecount: 0,
-        liked: [],
-        commentcount:0,
-        comments:[],
-    }; 
-    Blogarr.push(blog)
-    // var json= JSON.stringify(arr);
+//         titl.nextElementSibling.style.display="none";
+//         titl.style.border="1px solid trasparent";
+//         // dat.nextElementSibling.style.display="none";
+//         // dat.style.border="1px solid trasparent";
+//         p.nextElementSibling.style.display="none";
+//         p.style.border="1px solid trasparent";
+//         msg.nextElementSibling.style.display="none";
+//         msg.style.border="1px solid trasparent";
+//     var blog={
+//         title:title,
+//         date:dateToday,
+//         picture:pictures,
+//         message:messages,
+//         likecount: 0,
+//         liked: [],
+//         commentcount:0,
+//         comments:[],
+//     }; 
+//     Blogarr.push(blog)
+//     // var json= JSON.stringify(arr);
     
-    localStorage.setItem("blogs", JSON.stringify(Blogarr));
+//     localStorage.setItem("blogs", JSON.stringify(Blogarr));
 
-    alert("Blog added")
-    window.location.href="./AdminBlog.html"
-}
-// onEdit();
-// resertForm();
+//     alert("Blog added")
+//     window.location.href="./AdminBlog.html"
+// }
+// // onEdit();
+// // resertForm();
 
-}
+// }
 
 
 //////////////////////////////////Comment//////////////////////
