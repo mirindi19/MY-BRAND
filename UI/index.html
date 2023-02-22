@@ -64,11 +64,11 @@ thisForm.addEventListener('submit', async function (e) {
         if(data.data.role==="user"){
 		alert(`${data.message}`)
         window.location.href = './loading.html';
-        localStorage.setItem("loginuser",JSON.stringify(data.data.token))
+        localStorage.setItem("loginuser",data.data.token)
     }else if(data.data.role==="Admin"){
         alert(`${data.message}`)
         window.location.href = './adminBlog.html';
-        localStorage.setItem("loginuser",JSON.stringify(data.data.token))
+        localStorage.setItem("loginuser",data.data.token)
     }
 	}
 	else{

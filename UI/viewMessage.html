@@ -53,14 +53,14 @@
             <div class="wrapper-table">
        <div class="Table-div-response">
         <!-- <a href="AdminSkill.html" class="btnAction">Add SKill</a> -->
-            <table class="display-Table" id="storeList">
+            <table class="display-Table">
                 <tr> 
                     <th>name</th>
                     <th>Email</th>
                     <th>Address</th>
                     <th>Message</th> 
                </tr>
-                <tbody>
+                <tbody id="storeList">
                     
                 </tbody> 
             </table>
@@ -70,15 +70,31 @@
         <script src="main.js"></script>
        <script>window.onload=displayContact()</script> 
        <script>
-        fetch("http://localhost:2000/contat/").then((data)=>{
+        const token=localStorage.getItem("loginuser")
+        let headers
+        if (token) {
+      headers = {
+        "Content-Type": "application/json",
+        token: `${token}`,
+      };
+    } else {
+      headers = {
+        "Content-Type": "application/json",
+      };
+    }
+        // console.log("token",token);
+        fetch("http://localhost:2000/contat/",{headers:headers}).then((data)=>{
             return data.json();
         }).then((objectData)=>{
+            // console.log(objectData);
             let tableData="";
-            objectData.map((values)=>{
-                tableData+=`<tr>
-                    <td>${values.data.name}</td>
+            objectData.data.map((values)=>{
+                tableData+= ` <tr key=${values._id}>
+                    <td>${values.name}</td>
+                       <td>${values.email}</td>
+                       <td>${values.address}</td>
+                       <td>${values.message}</td>
                     </tr>`;
-                    console.log("let check",values.data.name);
             });
             document.getElementById("storeList").innerHTML=tableData;
         })

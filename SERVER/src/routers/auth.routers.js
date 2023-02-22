@@ -83,13 +83,41 @@
  *                  type: object
  *       500:
  *         description: Some server error
- *
+ * /auth:
+ *   get:
+ *     summary: Get all signup 
+ *     tags: [Contacts]
+ *     parameters:
+ *       - name: token
+ *         in: header
+ *         description: THis is the token to login
+ *         type: string
+ *         required: true
+ *     responses:
+ *       200:
+ *         description: Contact Have been Fetched.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties: 
+ *                 status:
+ *                  type: integer
+ *                 message:
+ *                  type: string
+ *                 data:
+ *                  type: object
+ *       500:
+ *         description: Some server error
  */
 
 const router=require("express").Router();
 const authController=require("../controllers/authController");
 const validation=require("../middlewares/validation");
+const isAdmin=require("../middlewares/isAdmin");
+const verifyToken =require("../middlewares/verifyToken");
 router.post("/signup",validation,authController.creatAccount);
 router.post("/login",authController.Login);
 router.put("/:id",authController.update);
+router.get("/",verifyToken,isAdmin,authController.DisplaySignup);
 module.exports =router;

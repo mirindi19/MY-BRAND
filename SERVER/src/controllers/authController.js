@@ -142,5 +142,15 @@ class authController{
             )
         }
     }
+    static async DisplaySignup(req,res){
+        const signupList = await User.find()
+        res.send(
+            res.status(200).json({
+               status:200,
+                message:"List of sign up",
+                data:signupList
+            })  
+        )
+    }
 }
 module.exports=authController;
