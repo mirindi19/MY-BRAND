@@ -95,7 +95,9 @@
                     <td>${values.date}</td>
                     <td>${values.content}</td>
                        <td><img src="${values.image}"/></td>
-                       <td><button onclick="return deletebtn('`+id+`')">Delete</button></td>
+                       <td><button onclick="return deletebtn('`+id+`')">Delete</button>
+                        <button onclick="return updatebtn('`+id+`')">Update</button>
+                        </td>
                     </tr>`;
             });
             document.getElementById("storeList").innerHTML=tableData;
@@ -128,9 +130,22 @@ var requestOptions = {
 
 fetch(`https://my-brand-production-e42e.up.railway.app/blog/${id}`, requestOptions)
   .then(response => response.text())
-  .then(result => console.log(result))
+       .then(function(data)
+  {
+	if(data.status===201){
+		window.location.href = './AdminBlog.html';
+	}
+	else{
+		window.location.href = './AdminBlog.html';
+	}
+	console.log(data)
+})
   .catch(error => console.log('error', error));
             }
+
+ function updatebtn(id){
+  window.location.href=`./UpdateBlog.html?id=${id}`
+}
         </script>
 </body>
 </html>

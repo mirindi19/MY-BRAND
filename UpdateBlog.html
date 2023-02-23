@@ -51,8 +51,8 @@
         <main>
             <div class="container-reg">
                 <header>Update Blog</header>
-        
-                <form onsubmit=" event.preventDefault(); addBlog(index)" id="frm">
+                <!-- onsubmit=" event.preventDefault(); addBlog(index)" id="frm" -->
+                <form id="UpdateBlog" name="UpdateBlog">
                     <div class="form first">
                         <div class="details personal">
                             <div class="fields">
@@ -67,12 +67,12 @@
                                   </div>
                                   <div class="input-field">
                                     <label for="proname">Picture</label>
-                                    <input type="file" class="form-control" id="picture" />
+                                    <input type="file" class="form-control" id="image" />
                                     <img src="" id="pic"></img>
                                   </div>
                                   <div class="input-field">
                                     <label for="proname">Message</label>
-                                    <textarea type="text" class="form-control" id="msg" value="message"></textarea>
+                                    <textarea type="text" class="form-control" id="content" value="message"></textarea>
                                   </div>
                                 <button class="btnEnter">Enter</button>
                             </div>
@@ -84,8 +84,53 @@
                     
         </main>
        <script src="main.js"></script> 
+       <script>
+var parts = window.location.search.substr(1).split("=");
+const id = parts[1]
+          const thisForm = document.getElementById('UpdateBlog');
+thisForm.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    const token =localStorage.getItem("loginuser")
+    console.log("my token",token);
+    var title = document.getElementById('title').value;
+    var content = document.getElementById('content').value;
+    var image = document.getElementById('image');
+    if (!title || !content || !image) {
+        return false;
+    }
+    var myHeaders = new Headers();
+    myHeaders.append("token", `${token}`);
+    var formdata = new FormData();
+    formdata.append("title", title);
+    formdata.append("content", content);
+    formdata.append("image", image.files[0]);
+    var requestOptions = {
+        method: 'PUT',
+        headers: myHeaders,
+        body: formdata,
+        redirect: 'follow'
+    };
+    fetch(`https://my-brand-production-e42e.up.railway.app/blog/${id}`, requestOptions)
+        .then(response => response.json())
+        .then(function(data)
+  {
+	if(data.code===200){
+		alert(`${data.message}`)
+		window.location.href = './AdminBlog.html';
+	}
+	else{
+		alert(`${data.error}`)
+	}
+	// console.log(data)
+})
+        .catch(error => console.log('error', error));
+        return false
+
+        })
+   
+       </script>
 </body>
-<script>
+<!-- <script>
     let Blog = JSON.parse(window.localStorage.getItem("blogs"))
     let index;
     var parts = window.location.search.substr(1).split("&");
@@ -104,7 +149,7 @@
         document.getElementById("pic").src = Blog[index].picture
     }
     window.onload = showEdit()
-</script>
+</script> -->
 </html>
 <style>
     form .fields .input-field

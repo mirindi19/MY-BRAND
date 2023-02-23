@@ -86,7 +86,7 @@
             return data.json();
         }).then((objectData)=>{
             // console.log(objectData);
-            let tableData="";
+            let tableData=""; 
             objectData.data.map((values)=>{
                 tableData+= ` <tr key=${values._id}>
                     <td>${values.Fullname}</td>
