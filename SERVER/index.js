@@ -48,7 +48,7 @@ dbConnect();
 app.use(express.json());
 app.use(cookieparser());
 app.use(bodyParser.json());
-app.use(cors({origin:false}))
+app.use(cors({origin:"*"}))
 app.use(express.urlencoded());
 app.use(express.static('public'));
 app.use(router);
