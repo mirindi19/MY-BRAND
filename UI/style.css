@@ -288,8 +288,20 @@ form .fields .input-field
 .footer{
     width: 100%;
     background-color: black;
-    height: 200px;
+    height: auto;
+    display: flex;
+    gap:260px;
+    flex-direction: row;
+    padding-top: 40px;
+    padding-left: 50px;
+    padding-right: 20px;
 }
+.footerBold{
+    color: white;
+    font-size: 20px;
+}
+
+
 
 
 
@@ -357,7 +369,14 @@ form .fields .input-field
 }
 .blog11{
     width:83%;
-
+}
+.blog11{
+    width: 320px;
+    margin-left: 20px; 
+}
+.footer{
+    flex-direction: column;
+    gap:20px;
 }
 }
 @media (max-width: 858px) {

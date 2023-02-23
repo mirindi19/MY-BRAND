@@ -156,9 +156,9 @@
 </div>
 
 <div class="Blog">
-    <h2>LATEST POSTS FROM BLOG</h2>
+    <h2 style="text-align:center;">LATEST POSTS FROM BLOG</h2>
     <br>
-    <p>If you are looking at blank cassettes on the web, you may be <br>very confused at the difference in price. You may see some for as low as $.17 each.</p>
+    <p style="text-align:center;">If you are looking at blank cassettes on the web, you may be <br>very confused at the difference in price. You may see some for as low as $.17 each.</p>
 </p>
 <br><br>
 <div class="blog1" id="box">
@@ -199,7 +199,27 @@
 </div>
    
 <div class="footer">
-
+<div class="footerAbout">
+<b class="footerBold">ABOUT ME</b>
+<p style="color: white;padding-top:10px;font-size:12px;">Do you want to be even more successful? Learn to love learning<br>  and growth.
+     The more effort you put into improving your skills,</p>
+<p style="color: white;padding-top:10px;font-size:12px;">Copyright ©2022 All rights reserved | This template is made with by 
+   <br><b style="color:#234EE8">Saidi</b></p>
+</div>
+<div class="new">
+    <b class="footerBold">NEWSLETTER</b>
+    <p style="color: white;padding-top:10px;font-size:12px;">Stay updated with our latest trends</p><br>
+    <input type="text" style="height:30px; color:#434141; padding-left: 20px;"placeholder="Enter email Address"><button style="height:30px; background-color: #234EE8; border: 5px solid #234EE8;"><i class='bx bx-right-arrow-alt' style='color:#ffffff'  ></i></button>
+</div> 
+<div class="follow">
+    <b class="footerBold">FOLLOW ME</b>
+    <p style="color: white;padding-top:10px;font-size:12px;">Let us be social</p><br>
+    <div class="sicon">
+        <i class='bx bxl-facebook-circle' style='color:#7b8cef'></i>
+        <i class='bx bxl-twitter' style='color:#4154c1'  ></i>
+        <i class='bx bxl-instagram' style='color:#810609'  ></i>
+    </div>
+</div>
 </div>
 
 <script src="main.js"></script>
@@ -253,6 +273,36 @@ thisForm.addEventListener('submit', async function (e) {
 	console.log(data)
 }).catch(error => console.error('Error:', error));
 });
+</script>
+<script>
+     const token=localStorage.getItem("loginuser")
+        let headers
+        if (token) {
+      headers = {
+        "Content-Type": "application/json",
+        token: `${token}`,
+      };
+    } else {
+      headers = {
+        "Content-Type": "application/json",
+      };
+    }
+        // console.log("token",token);
+        fetch("https://my-brand-production-e42e.up.railway.app/blog",{headers:headers}).then((data)=>{
+            return data.json();
+        }).then((objectData)=>{
+            // console.log(objectData);
+            let tableData="";
+            objectData.data.map((values)=>{
+                tableData+= `  <div class="blog11" >
+    <img src="${values.image}" width="250px" height="200px"/>
+    <p class="p1">${values.date}</p><br>
+    <p class="p2"><b>${values.title}</b></p><br>
+    <p class="p3">${values.content}</p>
+    </div>`;
+            });
+            document.getElementById("box").innerHTML=tableData;
+        })
 </script>
 </body>
 </html>
