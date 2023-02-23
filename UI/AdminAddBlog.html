@@ -53,7 +53,7 @@
                 <header>Enter Blog</header>
                 <!-- method="post" -->
                 <!-- onsubmit="return addBlogAdmin()" -->
-                <form name="validation" onsubmit="return addBlogAdmin()">
+                <form name="addBlogAdmin" method="post" id="addBlogAdmin">
                     <div class="form first">
                         <div class="details personal">
                             <div class="fields">
@@ -78,7 +78,7 @@
                                     <textarea type="text" class="form-control" id="content" name="content"></textarea>
                                     <span class="error">Pleace enter message</span>
                                   </div>
-                                <button class="btnEnter">Enter</button>
+                                <button class="btnEnter" type="submit">Enter</button>
                             </div>
         
                     </div>
@@ -89,8 +89,12 @@
         </main>
        <script src="main.js"></script> 
        <script>
-        const addBlogAdmin = () => {
-    const user = JSON.parse(localStorage.getItem("loginuser"))
+        
+            const thisForm = document.getElementById('addBlogAdmin');
+thisForm.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    const token =localStorage.getItem("loginuser")
+    console.log("my token",token);
     var title = document.getElementById('title').value;
     var content = document.getElementById('content').value;
     var image = document.getElementById('image');
@@ -98,29 +102,36 @@
         return false;
     }
     var myHeaders = new Headers();
-    myHeaders.append("token", `${user.token}`);
+    myHeaders.append("token", `${token}`);
     var formdata = new FormData();
     formdata.append("title", title);
     formdata.append("content", content);
     formdata.append("image", image.files[0]);
     var requestOptions = {
-        mode: 'no-cors',
         method: 'POST',
         headers: myHeaders,
         body: formdata,
         redirect: 'follow'
     };
-    fetch("http://localhost:2000/blog/", requestOptions)
+    fetch("https://my-brand-production-e42e.up.railway.app/blog/", requestOptions)
         .then(response => response.json())
-        .then(result => {
-            console.log(result)
-            document.getElementById('title').value = '',
-                document.getElementById('content').value = '',
-                document.getElementById('image').value = ''
-        })
+        .then(function(data)
+  {
+	if(data.status===201){
+		alert(`${data.message}`)
+		window.location.href = './AdminBlog.html';
+	}
+	else{
+		alert(`${data.error}`)
+	}
+	console.log(data)
+})
         .catch(error => console.log('error', error));
         return false
-}
+
+        })
+   
+
        </script>
 
 </body>
