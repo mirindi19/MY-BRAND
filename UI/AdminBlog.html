@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="Admin-style.css"/>
+    <link rel="stylesheet"
+    href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
     <title>PostAdmin</title>
 </head>
 <body>
@@ -17,18 +19,13 @@
             </div>
             <ul>
                 <li>
-                    <a href="">
+                    <a href="./SignUpView.html">
                         <span class="item" >Sign up view</span>
                     </a>
                 </li>
                 <li>
-                    <a href="viewMessage.html">
+                    <a href="./viewMessage.html">
                         <span class="item" >Message</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="AdminAddSkill.html">
-                        <span class="item">Add Skill</span>
                     </a>
                 </li>
                 <li>
@@ -38,15 +35,40 @@
                 </li>           
   </ul>
           </div>
+          </div>
+         
            
-          <div class="section">
+          <!-- <div class="section">
             <div class="top_navbar">
-                <div class="hamburger">
-                   <a href="index.html" class="btnTopNavbar">Logout</a>
-                </div>
+                <div class="hamburger"> -->
+                  <nav>
+                    <input type="checkbox" id="check">
+                    <label for="check" class="checkbtn">
+                        <i class='bx bx-menu' style='color:#ffffff'></i>
+                    </label>
+                    <ul>
+                        <li class="d"><a href="./SignUpView.html">Sign up view</a></li>
+                        <li class="d"><a href="./viewMessage.html">message</a></li>
+                        <li class="d"><a href="./AdminBlog.html">Blog</a></li>
+                        <li><button onclick="logout()" class="btnTopNavbar">logout</button></li>
+                    </ul>
+                </nav>
+                
+                  <!-- <a href="index.html" class="btnTopNavbar">Logout</a> -->
+                <!-- </div>
             </div>
              
-        </div>
+        </div> -->
+        <!-- <nav>
+          <label class="logo">mirindi</label>
+          <ul>
+            <li><a class="active" href="#">HOME</a></li>
+            <li><a href="#">ABOUT</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><button onclick="logout()">logout</button></li>
+        </ul>
+        </nav> -->
         <main>
             <div class="wrapper-table">
        <div class="Table-div-response">
