@@ -67,7 +67,7 @@ thisForm.addEventListener('submit', async function (e) {
         localStorage.setItem("loginuser",data.data.token)
     }else if(data.data.role==="Admin"){
         alert(`${data.message}`)
-        window.location.href = './adminBlog.html';
+        window.location.href = './AdminBlog.html';
         localStorage.setItem("loginuser",data.data.token)
     }
 	}
