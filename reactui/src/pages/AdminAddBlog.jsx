@@ -1,67 +1,71 @@
 import "./Admin-style.css"
 import MenuIcon from '@mui/icons-material/Menu';
+import {Link} from "react-router-dom"
 const AdminAddBlog = () => {
   return (
  
-    <div class="wrapper">
-       <div class="sidebar">
-           <div class="profile">
+    <div className="wrapper">
+       <div className="sidebar">
+           <div className="profile">
                <img src="./pictures/Mirindi.jpg" alt="profile_picture"></img>
             <h3>Mirindi Saidi</h3>
             <p>Admin</p>
         </div>
         <ul>
+        <Link to="/sign-up-view">
             <li>
-                <a href="./SignUpView.html">
+                <a>
                     <span class="item" >Sign up view</span>
                 </a>
             </li>
+            </Link>
             <li>
-                <a href="./viewMessage.html">
+                <a>
                     <span class="item" >Message</span>
                 </a>
             </li>
+        
             <li>
-                <a href="./AdminBlog.html"  class="active">
+                <a class="active">
                     <span class="item">Blog</span>
                 </a>
-            </li>           
+            </li>         
 </ul>
       </div>
      
 
     <nav>
         <input type="checkbox" id="check"/>
-        <label for="check" class="checkbtn">
+        <label for="check" className="checkbtn">
             <MenuIcon/>
         </label>
         <ul>
-            <li class="d"><a href="./SignUpView.html">Sign up view</a></li>
-            <li class="d"><a href="./viewMessage.html">message</a></li>
-            <li class="d"><a href="./AdminBlog.html">Blog</a></li>
-            <li><button onclick="logout()" class="btnTopNavbar">logout</button></li>
+            <li className="d"><a href="./SignUpView.html">Sign up view</a></li>
+            <li className="d"><a href="./viewMessage.html">message</a></li>
+            <li className="d"><a href="./AdminBlog.html">Blog</a></li>
+            <li><button class="btnTopNavbar">logout</button></li>
         </ul>
     </nav>
     <main>
-        <div class="container-reg">
+        <div className="container-reg">
             <header>Enter Blog</header>
             <form name="addBlogAdmin" method="post" id="addBlogAdmin">
-                <div class="form first">
-                    <div class="details personal">
-                        <div class="fields">
+                <div className="form first">
+                    <div className="details personal">
+                        <div className="fields">
     
-                             <div class="input-field">
+                             <div className="input-field">
                               <label for="proname">Title</label>
-                              <input type="text" class="form-control" id="title" name="title"/>
+                              <input type="text" className="form-control" id="title" name="title"/>
                             </div>
-                              <div class="input-field">
+                              <div className="input-field">
                                 <label for="proname">Picture</label>
-                                <input type="file" class="form-control" id="image" name="image"/>
+                                <input type="file" className="form-control" id="image" name="image"/>
                               
                               </div>
-                              <div class="input-field">
+                              <div className="input-field">
                                 <label for="proname">Message</label>
-                                <textarea type="text" class="form-control" id="content" name="content"></textarea>
+                                <textarea type="text" className="form-control" id="content" name="content"></textarea>
                                
                               </div>
                             <button class="btnEnter" type="submit">Enter</button>
