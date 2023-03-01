@@ -1,10 +1,9 @@
 import './App.css';
-// import AdminHome from './pages/AdminHome';
-import Loading from './pages/loading';
+import SignUp from "./pages/SignUp"
 function App() {
   return (
     <div className="App">
-    <Loading/>
+    <SignUp/>
     </div>
   );
 }
